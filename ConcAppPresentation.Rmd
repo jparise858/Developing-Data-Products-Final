@@ -1,0 +1,91 @@
+---
+title: "ConcGadget"
+author: "Jason Parise"
+date: "`r Sys.Date()`"
+output: ioslides_presentation
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Concentration Calculations Gadget
+
+In all biotechnology laboratories, frequent calculations for the concentrations
+and volumes of dilutions of reagents are required. This can be a time
+consuming task when many experiments are running. This concentration 
+calculation gadget is a tool to hasten spur-of-the-moment calculations 
+as scientists expedite their research.
+
+The calculations conducted in this gadget utilize the fundamental principle
+of the Dilution Equation: M1V1=M2V2.
+
+## Concentration Calculation Gadget
+
+```{r eruptions}
+library(shiny)
+library(miniUI)
+
+shinyUI(fluidPage(
+  titlePanel("Concentration Calculations (M1V1 = M2V2)"),
+  sidebarLayout(
+    sidebarPanel(
+    h1("Known Input"),
+    textInput("box1", "Master Stock Concentration (mM)", value = "0"),
+    textInput("box2", "Final volume (uL)", value = "0"),
+    textInput("box3", "Final concentration (mM)", value = "0"),
+  ),
+  mainPanel(
+    h3("Volume of Master Stock to be Used (uL):"),textOutput("b4"),
+  )
+  )
+))
+shinyServer(function(input, output) {
+
+  b1 = reactive(input$box1)
+  b2 = reactive(input$box2)
+  b3 = reactive(input$box3)
+
+
+output$b4 <- reactive({as.numeric(input$box3) * as.numeric(input$box2) / as.numeric(input$box1)
+
+})
+})
+```
+
+## ConcGadget Code
+library(shiny)
+library(miniUI)
+shinyUI(fluidPage(
+  titlePanel("Concentration Calculations (M1V1 = M2V2)"),
+  sidebarLayout(
+    sidebarPanel(
+    h1("Known Input"),
+    textInput("box1", "Master Stock Concentration (mM)", value = "0"),
+    textInput("box2", "Final volume (uL)", value = "0"),
+    textInput("box3", "Final concentration (mM)", value = "0"),
+  ),
+  mainPanel(
+    h3("Volume of Master Stock to be Used (uL):"),
+    textOutput("b4")))))
+shinyServer(function(input, output) {
+  b1 = reactive(input$box1)
+  b2 = reactive(input$box2)
+  b3 = reactive(input$box3)
+output$b4 <- reactive({as.numeric(input$box3) * as.numeric(input$box2) / as.numeric(input$box1)})})
+
+## Conclusions
+
+Please note that this presentation was produced for the final project of the
+Developing Data Products course. While the gadget does not work within this 
+presentation file type, if you run the separate ui and server files, or app 
+file, as found in my provided GitHub repository for this assignment, it works 
+just fine. This was done because there are current major incompatibility issues 
+with both slidify and R Presenter. This is likely because the course was written almost 10 years ago with few updates since that time.
+
+The destination to my github repository of these files has been submitted to 
+Coursera, however you can also find it here:
+https://github.com/jparise858/Developing-Data-Products-Final
+
+
