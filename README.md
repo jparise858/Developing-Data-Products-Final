@@ -1,3 +1,9 @@
 # Developing-Data-Products-Final
 
-PLEASE NOTE: Using slidify or R Presenter for presentations with current builds of r and RStudio are NOT FUNCTIONAL at this time due to incompatibilities. Please use the file ConcAppPresentation.Rmd as a shiny presentation to review the presentation required for this project. Thank you for your understanding. 
+PLEASE NOTE: The presentation was produced for the final project of the
+Developing Data Products course using shiny. While the gadget does not work within this 
+presentation file type, if you run the separate ui and server files, or app 
+file, as found in my provided GitHub repository for this assignment, it works 
+just fine. This was done because there are current major incompatibility issues 
+with both slidify and R Presenter. This is likely because the course was written 
+almost 10 years ago with few updates since that time.
